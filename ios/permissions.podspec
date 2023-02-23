@@ -3,8 +3,8 @@
 # Run `pod lib lint permission_handling.podspec` to validate before publishing.
 #
 Pod::Spec.new do |s|
-  s.name             = 'permission_handling'
-  s.version          = '0.0.1'
+  s.name             = 'permissions'
+  s.version          = '0.2.0'
   s.summary          = 'A new Flutter plugin project.'
   s.description      = <<-DESC
 A new Flutter plugin project.

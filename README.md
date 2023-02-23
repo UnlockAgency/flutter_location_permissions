@@ -1,15 +1,26 @@
-# permission_handling
+# Permissions
 
-A new Flutter plugin project.
+## Location
 
-## Getting Started
+```dart
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
+import 'package:permissions/permissions.dart' as permissions;
+import 'package:permissions/handlers/location_permission_status.dart';
 
-For help getting started with Flutter development, view the
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+// ...
+  
+Future<void> getAuthorizationStatus() async {
+	permissions.Permissions permissions = permissions.Permissions();
+	
+	final status = await permissions.location.getPermissionStatus();
+	
+	print("Current status? ${status}");
+	
+	if (status == LocationPermissionStatus.pending) {
+	  final newStatus = await permissions.location.requestAlwaysPermission();
+	  print("New status? ${newStatus}");
+	}
+}
 
+getAuthorizationStatus();
+```
