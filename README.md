@@ -5,7 +5,7 @@
 ```dart
 
 import 'package:permissions/permissions.dart' as permissions;
-import 'package:permissions/handlers/location_permission_status.dart';
+import 'package:permissions/src/location/location_permission_status.dart';
 
 // ...
   
