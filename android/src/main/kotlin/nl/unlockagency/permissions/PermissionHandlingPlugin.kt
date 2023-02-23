@@ -1,7 +1,7 @@
 package nl.unlockagency.permissions
 
 import androidx.annotation.NonNull
-
+import android.util.Log
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
@@ -17,13 +17,14 @@ class PermissionHandlingPlugin: FlutterPlugin, MethodCallHandler {
   private lateinit var channel : MethodChannel
 
   override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
-    channel = MethodChannel(flutterPluginBinding.binaryMessenger, "permission_handling")
+    channel = MethodChannel(flutterPluginBinding.binaryMessenger, "permissions")
     channel.setMethodCallHandler(this)
   }
 
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
-    if (call.method == "getPlatformVersion") {
-      result.success("Android ${android.os.Build.VERSION.RELEASE}")
+    Log.i("flutter", "onMethodCall: ${call.method}, arguments: ${call.arguments}")
+    if (call.method == "location") {
+      result("authorizedWhenInUse")
     } else {
       result.notImplemented()
     }
