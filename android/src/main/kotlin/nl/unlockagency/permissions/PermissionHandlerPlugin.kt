@@ -1,4 +1,4 @@
-package com.example.permission_handling
+package nl.unlockagency.permissions
 
 import androidx.annotation.NonNull
 

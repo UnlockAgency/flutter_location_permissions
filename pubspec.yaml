@@ -21,8 +21,8 @@ dev_dependencies:
 flutter:
   plugin:
     platforms:
-      # android:
-      #   package: com.example.permission_handling
-      #   pluginClass: PermissionHandlingPlugin
+      android:
+        package: nl.unlockagency.permissions
+        pluginClass: PermissionHandlingPlugin
       ios:
         pluginClass: PermissionHandlingPlugin

@@ -1,5 +1,5 @@
-group 'nl.unlockagency.permission_handling'
-version '1.0-SNAPSHOT'
+group 'nl.unlockagency.permissions'
+version '0.2.0'
 
 buildscript {
     ext.kotlin_version = '1.6.10'
