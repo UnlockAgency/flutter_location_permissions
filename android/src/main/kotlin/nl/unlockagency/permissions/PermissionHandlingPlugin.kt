@@ -24,7 +24,7 @@ class PermissionHandlingPlugin: FlutterPlugin, MethodCallHandler {
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
     Log.i("flutter", "onMethodCall: ${call.method}, arguments: ${call.arguments}")
     if (call.method == "location") {
-      result("authorizedWhenInUse")
+      result.success("authorizedWhenInUse")
     } else {
       result.notImplemented()
     }
