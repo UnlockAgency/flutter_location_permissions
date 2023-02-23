@@ -4,15 +4,14 @@
 
 ```dart
 
-import 'package:permissions/permissions.dart' as permissions;
-import 'package:permissions/src/location/location_permission_status.dart';
+import 'package:permissions/permissions.dart';
 
 // ...
   
 Future<void> getAuthorizationStatus() async {
-	permissions.Permissions permissions = permissions.Permissions();
+	Permissions _permissions = Permissions();
 	
-	final status = await permissions.location.getPermissionStatus();
+	final status = await _permissions.location.getPermissionStatus();
 	
 	print("Current status? ${status}");
 	
