@@ -9,27 +9,38 @@ import Foundation
 import CoreLocation
 
 class PermissionHandler {
-    private var handler: Any?
+    private var handlers: [PermissionHandleable] = []
     
-    func handle(method: String, arguments: [Any], result: @escaping (Any) -> Void) {
-        let aResult: (Any) -> Void = { res in
-            result(res)
+    func handle(method: String, arguments: [String: Any], result: @escaping (FlutterValueType) -> Void) {
+        do {
+            var arguments = arguments
+            guard let service = arguments["service"] as? String else {
+                throw PermissionError.missingService
+            }
+            arguments.removeValue(forKey: "service")
+            guard let handler = serviceHandler(fromString: service) else {
+                throw PermissionError.unknownService
+            }
+            try handler.handle(method: method, arguments: arguments) { [weak self] res in
+                result(res)
+                self?.handlers.removeAll { $0.uuid == handler.uuid }
+            }
+            handlers.append(handler)
+            
+        } catch let error as PermissionError {
+            result(error.stringValue)
+            
+        } catch {
+            result("ERROR_\(error)")
         }
-        
-        let service = method
-        var arguments = arguments
-        guard let method = arguments.first as? String else {
-            result("")
-            return
-        }
-        arguments.removeFirst()
+    }
+    
+    private func serviceHandler(fromString service: String) -> PermissionHandleable? {
         switch service {
         case "location":
-            let locHandler = LocationPermissionHandler()
-            handler = locHandler
-            locHandler.handle(method: method, arguments: arguments, result: aResult)
+            return LocationPermissionHandler()
         default:
-            result("")
+            return nil
         }
     }
 }

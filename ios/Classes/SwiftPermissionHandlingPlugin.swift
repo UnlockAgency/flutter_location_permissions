@@ -11,16 +11,9 @@ public class SwiftPermissionHandlingPlugin: NSObject, FlutterPlugin {
     }
     
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
-        let arguments: [Any]
-        if let args = call.arguments as? [Any] {
-            arguments = args
-        } else if let arg = call.arguments {
-            arguments = [ arg ]
-        } else {
-            arguments = []
-        }
+        let arguments = (call.arguments as? [String: Any]) ?? [:]
         permissionHandler.handle(method: call.method, arguments: arguments) { response in
-            result(response)
+            result(response.transformToFlutterValueType())
         }
     }
 }

@@ -1,6 +1,7 @@
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 import 'permissions_method_channel.dart';
+import 'permissions_service.dart';
 
 abstract class PermissionsPlatform extends PlatformInterface {
   /// Constructs a PermissionHandlingPlatform.
@@ -23,11 +24,11 @@ abstract class PermissionsPlatform extends PlatformInterface {
     _instance = instance;
   }
 
-  Future<String?> getLocationPermissionStatus() {
-    throw UnimplementedError('getLocationPermissionStatus() has not been implemented.');
+  Future<String?> getPermissionStatus(PermissionService service) {
+    throw UnimplementedError('getPermissionStatus() has not been implemented.');
   }
 
-  Future<String?> requestLocationPermission(bool always) {
-    throw UnimplementedError('requestLocationPermission() has not been implemented.');
+  Future<String?> requestPermission(PermissionService service, Map<String, dynamic>? metadata) {
+    throw UnimplementedError('requestPermission() has not been implemented.');
   }
 }

@@ -1,3 +1,6 @@
-## 0.0.1
+# CHANGELOGE permissions
 
-* TODO: Describe initial release.
+## 0.3.0
+
+### Improvements
+- Handle "Allow Once" permissions on iOS
